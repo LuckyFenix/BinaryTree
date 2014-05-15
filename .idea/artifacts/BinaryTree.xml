@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BinaryTree">
+    <output-path>$PROJECT_DIR$/out/artifacts/BinaryTree</output-path>
+    <root id="archive" name="BinaryTree.jar">
+      <element id="module-output" name="BinaryTree" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

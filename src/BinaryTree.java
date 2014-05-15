@@ -8,7 +8,7 @@ import java.util.Date;
 public class BinaryTree extends JPanel
 {
     private static int HEIGHT;
-    public DateFormat dateFormat = new SimpleDateFormat("dd.mm.yyyy hh:mm:ss");
+    public final DateFormat dateFormat = new SimpleDateFormat("dd.mm.yyyy hh:mm:ss");
     private BinaryTreeModel binaryTreeModel;
     private ArrayList<NodeImg> nodeImgArray = new ArrayList<NodeImg>();
     private ArrayList<Node> nodeArray = new ArrayList<Node>();
