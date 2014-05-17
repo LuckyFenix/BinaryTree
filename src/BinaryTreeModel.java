@@ -55,7 +55,7 @@ public class BinaryTreeModel
 
     public void balancing()
     {
-        rootNode.balancing();
+        while (!rootNode.balancing());
     }
 
     public int getHeight()

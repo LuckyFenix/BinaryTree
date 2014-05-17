@@ -1,6 +1,5 @@
-import javax.swing.*;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 
 public class Node
@@ -161,7 +160,7 @@ public class Node
             } else
             {
                 if ((rightNode.getValue() != 0) &&
-                        (rightNode.getHeight() - leftNode.getHeight() == 2) &&
+                        (rightNode.getHeight() - leftNode.getHeight() >= 2) &&
                         rightNode.getLeftNode().getHeight() <= rightNode.getRightNode().getHeight())
                 {
                     System.out.println("Малое левое вращение " + value);
@@ -180,7 +179,7 @@ public class Node
                 }
                 if (rightNode.value != 0 &&
                         rightNode.getLeftNode().getValue() != 0 &&
-                        rightNode.getHeight() - leftNode.getHeight() == 2 &&
+                        rightNode.getHeight() - leftNode.getHeight() >= 2 &&
                         rightNode.getLeftNode().getHeight() > rightNode.getRightNode().getHeight())
                 {
                     System.out.println("Большое левое вращение " + value);
@@ -199,7 +198,7 @@ public class Node
                     return false;
                 }
                 if ((leftNode.getValue() != 0) &&
-                        (leftNode.getHeight() - rightNode.getHeight() == 2) &&
+                        (leftNode.getHeight() - rightNode.getHeight() >= 2) &&
                         leftNode.getRightNode().getHeight() <= leftNode.getLeftNode().getHeight())
                 {
                     System.out.println("Малое правое вращение " + value);
@@ -218,7 +217,7 @@ public class Node
                 }
                 if (leftNode.value != 0 &&
                         leftNode.getRightNode().getValue() != 0 &&
-                        leftNode.getHeight() - rightNode.getHeight() == 2 &&
+                        leftNode.getHeight() - rightNode.getHeight() >= 2 &&
                         leftNode.getRightNode().getHeight() > leftNode.getLeftNode().getHeight())
                 {
                     System.out.println("Большое правое вращение " + value);
@@ -236,11 +235,15 @@ public class Node
                     return false;
                 }
                 if (!leftNode.balancing())
-                   balancing();
-                if (!rightNode.balancing())
+                {
                     balancing();
-                //while (!leftNode.balancing());
-                //while (!rightNode.balancing());
+                    return false;
+                }
+                if (!rightNode.balancing())
+                {
+                    balancing();
+                    return false;
+                }
                 return true;
             }
         }
