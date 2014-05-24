@@ -2,18 +2,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Main extends JFrame implements ActionListener
 {
     private int binaryTreeCount = 0;
     private JPanel globalPanel = new JPanel(new BorderLayout());
     private JPanel treesPanel = new JPanel();
-    private ArrayList<BinaryTree> binaryTreesArray = new ArrayList<BinaryTree>();
-    private ArrayList<JTextField> textFieldArray = new ArrayList<JTextField>();
+    private ArrayList<BinaryTree> binaryTreesArray = new ArrayList<>();
+    private ArrayList<JTextField> textFieldArray = new ArrayList<>();
     private final JPanel panel = new JPanel(new GridBagLayout());
     private final JPanel btnPanel = new JPanel(new GridBagLayout());
     private JPanel binaryTreePanel;
@@ -38,12 +35,16 @@ public class Main extends JFrame implements ActionListener
         changesNode.addActionListener(this);
         balancingTree.addActionListener(this);
 
-        addTreeBtn.addActionListener(new ActionListener() {
+        addTreeBtn.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
+            public void actionPerformed(ActionEvent e)
+            {
+                try
+                {
                     String s = JOptionPane.showInputDialog(getThis(), "Введите значение корня дерева:");
-                    if (s != null) {
+                    if (s != null)
+                    {
                         int n = Integer.parseInt(s);
                         binaryTreesArray.add(new BinaryTree(n));
                         textFieldArray.add(new JTextField(10));
@@ -85,16 +86,12 @@ public class Main extends JFrame implements ActionListener
 
     public static void main(String[] args)
     {
-        SwingUtilities.invokeLater(new Runnable()
+        SwingUtilities.invokeLater(() ->
         {
-            @Override
-            public void run()
-            {
-                Main main = new Main();
-                main.setLocationRelativeTo(null);
-                main.setVisible(true);
-                main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            }
+            Main main = new Main();
+            main.setLocationRelativeTo(null);
+            main.setVisible(true);
+            main.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         });
     }
 
@@ -104,43 +101,39 @@ public class Main extends JFrame implements ActionListener
         for (int i = 0; i < binaryTreesArray.size(); i++)
         {
             final int finalI = i;
-            Runnable runnable = new Runnable()
+            Runnable runnable = () ->
             {
-                @Override
-                public void run()
+                try
                 {
-                    try
+                    String s = textFieldArray.get(finalI).getText();
+                    if (e.getSource().equals(addNewNode))
                     {
-                        String s = textFieldArray.get(finalI).getText();
-                        if (e.getSource().equals(addNewNode))
-                        {
-                            int i1 = Integer.parseInt(s);
-                            binaryTreesArray.get(finalI).addNewNode(i1);
-                            getThis().revalidate();
-                            textFieldArray.get(finalI).setText("");
-                        }
-                        if (e.getSource().equals(deleteNode))
-                        {
-                            int i1 = Integer.parseInt(s);
-                            binaryTreesArray.get(finalI).deleteNode(i1);
-                            getThis().revalidate();
-                            textFieldArray.get(finalI).setText("");
-                        }
-                        if (e.getSource().equals(changesNode))
-                        {
-                            binaryTreesArray.get(finalI).
-                                    changesNode(Integer.parseInt(s.split(" ")[0]),
-                                            Integer.parseInt(s.split(" ")[1]));
-                            getThis().revalidate();
-                            textFieldArray.get(finalI).setText("");
-                        }
-                        if (e.getSource().equals(balancingTree))
-                        {
-                            binaryTreesArray.get(finalI).balancingTree();
-                            getThis().revalidate();
-                        }
-                    } catch (Exception e1) {}
-                }
+                        int i1 = Integer.parseInt(s);
+                        binaryTreesArray.get(finalI).addNewNode(i1);
+                        getThis().revalidate();
+                        textFieldArray.get(finalI).setText("");
+                    }
+                    if (e.getSource().equals(deleteNode))
+                    {
+                        int i1 = Integer.parseInt(s);
+                        binaryTreesArray.get(finalI).deleteNode(i1);
+                        getThis().revalidate();
+                        textFieldArray.get(finalI).setText("");
+                    }
+                    if (e.getSource().equals(changesNode))
+                    {
+                        binaryTreesArray.get(finalI).
+                                changesNode(Integer.parseInt(s.split(" ")[0]),
+                                        Integer.parseInt(s.split(" ")[1]));
+                        getThis().revalidate();
+                        textFieldArray.get(finalI).setText("");
+                    }
+                    if (e.getSource().equals(balancingTree))
+                    {
+                        binaryTreesArray.get(finalI).balancingTree();
+                        getThis().revalidate();
+                    }
+                } catch (Exception ignored) {}
             };
             runnable.run();
         }

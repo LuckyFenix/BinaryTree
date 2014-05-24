@@ -22,11 +22,6 @@ public class BinaryTreeModel
         System.out.println();
     }
 
-    public Node search(int value)
-    {
-        return rootNode.search(getLink(value));
-    }
-
     public Node search(ArrayList<String> link)
     {
         return rootNode.search(link);
@@ -34,16 +29,11 @@ public class BinaryTreeModel
 
     public ArrayList<String> getLink(int value)
     {
-        ArrayList<String> arrayListLink = new ArrayList<String>();
+        ArrayList<String> arrayListLink = new ArrayList<>();
         String[] arrayLink = rootNode.getLink(value).split(" ");
-        for (int i = 0; i < arrayLink.length; i++)
-        {
-            if (arrayLink[i] != "")
-                arrayListLink.add(arrayLink[i]);
-            if (arrayLink[i] == null)
-            {
-                return null;
-            }
+        for (String anArrayLink : arrayLink) {
+            if (!anArrayLink.equals(""))
+                arrayListLink.add(anArrayLink);
         }
         return arrayListLink;
     }

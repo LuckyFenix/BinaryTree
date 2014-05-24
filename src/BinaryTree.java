@@ -10,8 +10,8 @@ public class BinaryTree extends JPanel
     private static int HEIGHT;
     public final DateFormat dateFormat = new SimpleDateFormat("dd.mm.yyyy hh:mm:ss");
     private BinaryTreeModel binaryTreeModel;
-    private ArrayList<NodeImg> nodeImgArray = new ArrayList<NodeImg>();
-    private ArrayList<Node> nodeArray = new ArrayList<Node>();
+    private ArrayList<NodeImg> nodeImgArray = new ArrayList<>();
+    private ArrayList<Node> nodeArray = new ArrayList<>();
 
     public BinaryTree(int value)
     {
@@ -30,7 +30,7 @@ public class BinaryTree extends JPanel
         {
             for (int j = 0; j < Math.pow(2, i); j++)
             {
-                ArrayList<String> link = new ArrayList<String>();
+                ArrayList<String> link = new ArrayList<>();
                 for (int k = 0; k < i; k++)
                 {
                     int n = (int) Math.pow(2, i) / (int) Math.pow(2, k + 1);

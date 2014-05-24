@@ -141,12 +141,6 @@ public class Node
         }
     }
 
-    public void refactoring(int value, Date date)
-    {
-        this.value = value;
-        this.date = date;
-    }
-
     public boolean balancing()
     {
         if (value == 0)
@@ -263,28 +257,28 @@ public class Node
             if (leftNode.getValue() == 0)
             {
                 return 1 + rightNode.getHeight();
-            }
-            if (rightNode.getValue() == 0)
+            } else
             {
-                return 1 + leftNode.getHeight();
-            }
-            if (leftNode.getValue() != 0 && rightNode.getValue() != 0)
-            {
-                int leftHeight = leftNode.getHeight();
-                int rightHeight = rightNode.getHeight();
-                if (leftHeight > rightHeight)
+                if (rightNode.getValue() == 0)
                 {
-                    return 1 + leftHeight;
+                    return 1 + leftNode.getHeight();
                 } else
-                    return 1 + rightHeight;
+                {
+                    int leftHeight = leftNode.getHeight();
+                    int rightHeight = rightNode.getHeight();
+                    if (leftHeight > rightHeight)
+                    {
+                        return 1 + leftHeight;
+                    } else
+                        return 1 + rightHeight;
+                }
             }
         }
-        return 0;
     }
 
     public ArrayList<Node> getNodeArray()
     {
-        ArrayList<Node> arrayList = new ArrayList<Node>();
+        ArrayList<Node> arrayList = new ArrayList<>();
         if (value == 0)
         {
             return arrayList;
